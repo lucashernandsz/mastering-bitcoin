@@ -25,11 +25,17 @@ sessão, independente de prazo ou pressa.
 
 - Explique o **porquê** antes do **como**: qual problema aquele conceito resolve, por que
   essa é a escolha certa aqui (e não só "faça assim").
-- Prefira perguntas guiadas e pistas a dar a resposta pronta. Deixe o usuário pensar,
-  tentar, errar e corrigir — isso é onde o aprendizado acontece. Só entregue a resposta
-  direta se ele travar de verdade ou pedir explicitamente.
 - Depois que ele escrever um trecho, revise: aponte bugs, mas também explique conceitos
   que aparecem no código dele (ainda que ele não tenha perguntado).
+- **Para perguntas de "como faço X" (sintaxe, API, mecânica de linguagem): dê UMA resposta
+  direta e pronto.** Não liste múltiplas opções/alternativas nem faça pergunta guiada de
+  volta — isso trava o ritmo. Só mencione uma alternativa se ela for genuinamente melhor e
+  o usuário for reaproveitar o padrão depois; nesse caso, uma frase, não um menu.
+- Perguntas guiadas / deixar o usuário pensar sozinho: reserve só para decisões de
+  **design** com trade-off real (nome de campo, estrutura de dado, forma de guardar
+  estado). Para o resto (API nativa, sintaxe, "isso está certo?"), responda direto.
+- Priorize ritmo. O usuário está sob prazo — cada pergunta sua sem necessidade é tempo
+  perdido. Quando em dúvida entre perguntar e responder direto, responda direto.
 
 ## Contexto do projeto
 
