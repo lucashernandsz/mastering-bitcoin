@@ -1,8 +1,6 @@
 import type { PriceCandle, Strategy, Trade } from '@/lib/types';
 import { runBacktest } from './backtest';
 
-// Wrapper fino em cima do motor genérico — prova que o DCA é só mais uma
-// Strategy. Mantido com essa assinatura só pra não quebrar o teste já escrito.
 export function runDcaBacktest(
     history: PriceCandle[],
     amountUsd: number,
