@@ -24,7 +24,9 @@ async function fetchKlinesPage(startTime: number): Promise<BinanceKline[]> {
     );
 
     if (!res.ok) {
-        throw new Error('Failed to fetch price history from Binance');
+        const body = await res.text().catch(() => '<no body>');
+        console.error(`Binance klines request failed: ${res.status} ${res.statusText} — ${body}`);
+        throw new Error(`Failed to fetch price history from Binance (status ${res.status})`);
     }
 
     return res.json();

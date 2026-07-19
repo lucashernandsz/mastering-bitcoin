@@ -36,7 +36,11 @@ export default function Home() {
   }
 
   useEffect(() => {
+    // Runs once on mount with the default amountUsd/dropPercent; refetching on
+    // every keystroke would be bad UX, so this intentionally skips fetchBacktest
+    // as a dependency.
     fetchBacktest();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

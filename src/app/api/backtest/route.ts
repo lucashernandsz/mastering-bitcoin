@@ -4,6 +4,10 @@ import { createDcaStrategy } from '@/lib/dca';
 import { createBuyTheDipStrategy } from '@/lib/buyTheDip';
 import type { Strategy } from '@/lib/types';
 
+// Paginating the full BTC history from Binance takes a few sequential
+// requests; give the function more headroom than the platform default.
+export const maxDuration = 30;
+
 function buildStrategy(searchParams: URLSearchParams): Strategy {
     const strategyId = searchParams.get('strategy') ?? 'dca';
     const amountUsd = Number(searchParams.get('amountUsd') ?? 100);
@@ -31,7 +35,8 @@ export async function GET(request: Request) {
             dca: runBacktest(history, dcaBaseline),
             history: history
         });
-    } catch {
+    } catch (error) {
+        console.error('Backtest route failed:', error);
         return Response.json({ error: 'Failed to run backtest' }, { status: 502 });
     }
 }
