@@ -1,33 +1,37 @@
-import type { PriceCandle, Trade } from '@/lib/types';
+import type { PriceCandle, Strategy, Trade } from '@/lib/types';
+import { runBacktest } from './backtest';
 
+// Wrapper fino em cima do motor genérico — prova que o DCA é só mais uma
+// Strategy. Mantido com essa assinatura só pra não quebrar o teste já escrito.
 export function runDcaBacktest(
     history: PriceCandle[],
     amountUsd: number,
     frequencyDays: number
 ): Trade[] {
-    const trades: Trade[] = [];
+    return runBacktest(history, createDcaStrategy(amountUsd, frequencyDays));
+}
 
-    if (history.length === 0) {
-        return trades;
-    }
+export function createDcaStrategy(amountUsd: number, frequencyDays: number): Strategy {
+    return {
+        id: 'dca',
+        label: 'DCA',
+        decide({ today, trades }) {
+            const lastTrade = trades.at(-1)
 
-    const tradeDate = new Date(history[0].date);
-    const finalDate = new Date(history[history.length - 1].date);
+            if (!lastTrade) {
+                return { amountUsd };
+            }
 
-    while (tradeDate <= finalDate) {
-        const isoDate = tradeDate.toISOString().slice(0, 10);
-        const candle = history.find((h) => h.date === isoDate);
+            const MS_PER_DAY = 24 * 60 * 60 * 1000;
+            const daysSinceLast =
+                (new Date(today.date).getTime() - new Date(lastTrade.date).getTime()) / MS_PER_DAY;
 
-        if (candle) {
-            trades.push({
-                amountUsd,
-                amountBtc: amountUsd / candle.price,
-                date: candle.date,
-            });
-        }
+            if(daysSinceLast >= frequencyDays){
+                return { amountUsd };
+            }
 
-        tradeDate.setUTCDate(tradeDate.getUTCDate() + frequencyDays);
-    }
+            return null;
 
-    return trades;
+        },
+    };
 }

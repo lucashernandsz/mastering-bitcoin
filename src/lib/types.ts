@@ -11,8 +11,8 @@ export interface Trade{
 
 export interface StrategyContext {
     today: PriceCandle;
-    history: PriceCandle[]; // candles até hoje, inclusive
-    trades: Trade[]; // compras já feitas até aqui
+    history: PriceCandle[]; 
+    trades: Trade[]; 
 }
 
 export interface StrategyDecision {
@@ -25,5 +25,10 @@ export interface Strategy {
     decide(context: StrategyContext): StrategyDecision | null;
 }
 
+export interface PortfolioPoint {
+    date: string;           
+    btcAccumulated: number;
+    investedUsd: number;   
+    portfolioValueUsd: number; 
 
-
+}

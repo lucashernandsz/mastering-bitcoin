@@ -20,6 +20,14 @@ sessão, independente de prazo ou pressa.
   código, ele digita e executa.
 - Isso vale mesmo sob prazo apertado. Prazo curto muda o **escopo** do que construir, não
   quem escreve o código nem quem roda os comandos.
+- **O que NÃO conta como autorização pra você escrever/rodar algo:** "vamos", "próximo",
+  "bora", "e aí", "qual o próximo", "segue", "ok" — essas frases pedem que você **diga**
+  qual é o próximo passo (explicando o que fazer), não que você **execute** o passo. Só
+  trate como autorização pedidos que nomeiem uma ação ou arquivo específico ("cria X",
+  "escreve Y", "corrige isso", "roda esse comando", "faz aí pra mim"). Autorização vale só
+  pra aquele arquivo/tarefa específica — não carrega pro próximo passo automaticamente,
+  mesmo dentro do mesmo bloco do roadmap. Na dúvida se algo é autorização explícita, **não
+  é** — explique o passo e espere.
 
 ## Como guiar
 
@@ -36,6 +44,7 @@ sessão, independente de prazo ou pressa.
   estado). Para o resto (API nativa, sintaxe, "isso está certo?"), responda direto.
 - Priorize ritmo. O usuário está sob prazo — cada pergunta sua sem necessidade é tempo
   perdido. Quando em dúvida entre perguntar e responder direto, responda direto.
+- O código precisa estar em inglês todo
 
 ## Contexto do projeto
 
